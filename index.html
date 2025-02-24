@@ -1,28 +1,111 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <title>Hello</title>
-    </head>
-    <body>Hello World!
-        <h1>Hello World!</h1>
-        <p>This is a simple HTML page.</p>
-        <script>
-            console.log("Hello from JavaScript!");
-        </script>
-        <style>
-            body {
-                background-color: lightblue;
-            }
-            h1 {
-                color: white;
-            }
-        </style>
-        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-        <a href="https://www.example.com">Visit Example.com</a>
-        <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-        </ul>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Awesome GitHub Pages Site</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .profile-pic {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      mix-blend-mode: multiply;
+    }
+
+    section {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    details {
+      margin-top: 1rem;
+      background: #f9f9f9;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My GitHub Pages Site</h1>
+  </header>
+
+  <main class="grid-container">
+    <!-- 
+      SECTION 1: Bio & Picture 
+      (Uses semantic HTML <section>)
+    -->
+    <section>
+      <h2>About Me</h2>
+      <img 
+        src="images/lulu.png" 
+        alt="A photo of my cat, Lulu" 
+        class="profile-pic"
+      />
+      <p>
+        Hi there! I'm Yunhao Hu, and I love hiking and watching NBA games.
+        I also enjoy playing video games and spending time with my (girlfriend's) cat, Lulu.
+      </p>
+    </section>
+
+    <section>
+      <h2>Random Cat Fact</h2>
+      <p id="cat-fact">Loading cat fact…</p>
+      
+      <details>
+        <summary>What is this &lt;details&gt; element about?</summary>
+        <p>
+          The <code>&lt;details&gt;</code> element allows us to create 
+          an expandable/collapsible area in HTML. Clicking on the 
+          <code>&lt;summary&gt;</code> toggles visibility of the content inside. 
+          It's handy for FAQs, spoilers, or any extra details you 
+          don't want to show by default.
+        </p>
+      </details>
+
+      <details>
+        <summary>What is "mix-blend-mode" in CSS?</summary>
+        <p>
+          The <code>mix-blend-mode</code> CSS property sets how 
+          an element's content should blend with its parent background. 
+          When you set something like <code>mix-blend-mode: multiply</code>, 
+          it blends the colors similarly to how layers blend in Photoshop. 
+          It's often used for creative visual effects.
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Yunhao Hu – All cat facts remain highly questionable.</p>
+  </footer>
+
+  <script>
+    fetch('https://catfact.ninja/fact')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('cat-fact').textContent = data.fact;
+      })
+      .catch(error => {
+        console.error('Error fetching cat fact:', error);
+        document.getElementById('cat-fact').textContent = 'Oops! Something went wrong fetching a cat fact.';
+      });
+  </script>
+
+</body>
 </html>
